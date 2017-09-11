@@ -79,6 +79,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
     private boolean mAnimating;
 
+
     /* Listener for callback */
     private OnExpandStateChangeListener mListener;
 
@@ -93,6 +94,10 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
     public ExpandableTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
+    }
+
+    public boolean ismCollapsed() {
+        return mCollapsed;
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -111,10 +116,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        if (mButton.getVisibility() != View.VISIBLE) {
-            return;
-        }
-        expand();
+        //expand();
     }
 
     public void expand() {
@@ -197,9 +199,14 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
         // If the text fits in collapsed mode, we are done.
         if (mTv.getLineCount() <= mMaxCollapsedLines) {
+            if (mListener != null) {
+                mListener.isNeedExpand(mTv, false);
+            }
             return;
         }
-
+        if (mListener != null) {
+            mListener.isNeedExpand(mTv, true);
+        }
         // Saves the text height w/ max lines
         mTextHeightWithMaxLines = getRealTextViewHeight(mTv);
 
@@ -208,7 +215,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         if (mCollapsed) {
             mTv.setMaxLines(mMaxCollapsedLines);
         }
-        mButton.setVisibility(View.VISIBLE);
+        mButton.setVisibility(View.GONE);
 
         // Re-measure with new setup
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -367,5 +374,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
          * @param isExpanded - true if the TextView has been expanded
          */
         void onExpandStateChanged(TextView textView, boolean isExpanded);
+
+        void isNeedExpand(TextView textView, boolean isExpanded);
     }
 }

@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -155,12 +156,24 @@ public class DemoActivity extends AppCompatActivity {
                 @Override
                 public void onExpandStateChanged(TextView textView, boolean isExpanded) {
                     Toast.makeText(getActivity(), isExpanded ? "Expanded" : "Collapsed", Toast.LENGTH_SHORT).show();
+                    Log.w("tag","expTv1:" + isExpanded);
                 }
             });
 
-            expTv1.setText(getString(R.string.dummy_text1));
+            expTv2.setOnExpandStateChangeListener(new ExpandableTextView.OnExpandStateChangeListener() {
+                @Override
+                public void onExpandStateChanged(TextView textView, boolean isExpanded) {
+                    Log.w("tag","expTv1:" + isExpanded);
+                }
+            });
+
+            expTv1.setText("sfdasfadsfsadfsa");
             expTv2.setText(getString(R.string.dummy_text2));
 
+//            Log.w("tag","expTv1:" + expTv1.ismCollapsed());
+//            Log.w("tag","expTv2:" + expTv2.ismCollapsed());
+//            Log.w("tag","expTv1:" + expTv1.ismCollapsed());
+//            Log.w("tag","expTv2:" + expTv2.ismCollapsed());
             return rootView;
         }
     }
