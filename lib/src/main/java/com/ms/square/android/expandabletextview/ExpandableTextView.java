@@ -81,6 +81,8 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
     private boolean isClickable = false;
 
+    private int mTvId = 0;
+
     @Override
     public void setClickable(boolean clickable) {
         isClickable = clickable;
@@ -284,6 +286,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         mMaxCollapsedLines = typedArray.getInt(R.styleable.ExpandableTextView_maxCollapsedLines, MAX_COLLAPSED_LINES);
         mAnimationDuration = typedArray.getInt(R.styleable.ExpandableTextView_animDuration, DEFAULT_ANIM_DURATION);
         mAnimAlphaStart = typedArray.getFloat(R.styleable.ExpandableTextView_animAlphaStart, DEFAULT_ANIM_ALPHA_START);
+        mTvId = typedArray.getResourceId(R.styleable.ExpandableTextView_mTvId, R.id.expandable_text);
         mExpandDrawable = typedArray.getDrawable(R.styleable.ExpandableTextView_expandDrawable);
         mCollapseDrawable = typedArray.getDrawable(R.styleable.ExpandableTextView_collapseDrawable);
 
@@ -305,7 +308,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
     private void findViews() {
         if (mTv == null) {
-            mTv = (TextView) findViewById(R.id.expandable_text);
+            mTv = (TextView) findViewById(mTvId);
         }
         mTv.setOnClickListener(this);
         mButton = (ImageButton) findViewById(R.id.expand_collapse);

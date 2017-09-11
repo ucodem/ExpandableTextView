@@ -158,12 +158,22 @@ public class DemoActivity extends AppCompatActivity {
                     Toast.makeText(getActivity(), isExpanded ? "Expanded" : "Collapsed", Toast.LENGTH_SHORT).show();
                     Log.w("tag","expTv1:" + isExpanded);
                 }
+
+                @Override
+                public void isNeedExpand(TextView textView, boolean isExpanded) {
+
+                }
             });
 
             expTv2.setOnExpandStateChangeListener(new ExpandableTextView.OnExpandStateChangeListener() {
                 @Override
                 public void onExpandStateChanged(TextView textView, boolean isExpanded) {
                     Log.w("tag","expTv1:" + isExpanded);
+                }
+
+                @Override
+                public void isNeedExpand(TextView textView, boolean isExpanded) {
+
                 }
             });
 

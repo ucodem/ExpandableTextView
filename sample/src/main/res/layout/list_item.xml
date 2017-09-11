@@ -10,10 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         expandableTextView:animAlphaStart="1"
+        expandableTextView:mTvId="@+id/tv_text"
         expandableTextView:maxCollapsedLines="4">
 
         <TextView
-            android:id="@id/expandable_text"
+            android:id="@id/tv_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
