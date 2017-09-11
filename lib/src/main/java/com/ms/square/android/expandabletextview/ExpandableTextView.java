@@ -79,6 +79,16 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
     private boolean mAnimating;
 
+    private boolean isClickable = false;
+
+    @Override
+    public void setClickable(boolean clickable) {
+        isClickable = clickable;
+    }
+
+    public TextView getmTv() {
+        return mTv;
+    }
 
     /* Listener for callback */
     private OnExpandStateChangeListener mListener;
@@ -116,7 +126,9 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        //expand();
+        if (isClickable) {
+            expand();
+        }
     }
 
     public void expand() {
