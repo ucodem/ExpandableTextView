@@ -81,6 +81,8 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
     private boolean isClickable = false;
 
+    private int tvId = R.id.expandable_text;
+
     @Override
     public void setClickable(boolean clickable) {
         isClickable = clickable;
@@ -96,6 +98,10 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
     /* For saving collapsed status when used in ListView */
     private SparseBooleanArray mCollapsedStatus;
     private int mPosition;
+
+    public void setTvId(int tvId) {
+        this.tvId = tvId;
+    }
 
     public ExpandableTextView(Context context) {
         this(context, null);
@@ -300,7 +306,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
     }
 
     private void findViews() {
-        mTv = (TextView) findViewById(R.id.expandable_text);
+        mTv = (TextView) findViewById(tvId);
         mTv.setOnClickListener(this);
         mButton = (ImageButton) findViewById(R.id.expand_collapse);
         mButton.setImageDrawable(mCollapsed ? mExpandDrawable : mCollapseDrawable);
